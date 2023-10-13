@@ -13,7 +13,7 @@ export class RecipeService {
   
   constructor(private http: HttpClient) { }
 
-  getRecipes(): Observable<Recipe[]> {
+  getAllRecipes(): Observable<Recipe[]> {
     //http.get : méthode de l'instance HttpClient
     // Recipe[] indique au compilateur TypeScript le type de données attendu en réponse de la requête. 
     return this.http.get<Recipe[]>(baseUrl); // Remplacez l'URL par celle de votre API.
@@ -21,12 +21,12 @@ export class RecipeService {
 
   getRecipe(id: string) {
 
-    return this.http.get('/api/recipes/' + id);
+    return this.http.get<Recipe[]>('${baseUrl}/:' + id);
   }
 
-  postRecipe()
+  addRecipe(recipe : Recipe) : Observable<Recipe[]> 
   {
-    return null;
+    return this.http.post<Recipe[]>(baseUrl,recipe);
   }
 
   deleteRecipe(id : string )
