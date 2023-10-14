@@ -7,25 +7,25 @@ import { MatExpansionModule } from '@angular/material/expansion'; // Importez le
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormComponent } from './form/form.component';
-
-
+import { RecipeDetailComponent } from './recipe-list/recipe-detail/recipe-detail.component';
+import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
+import { RecipeUpdateComponent } from './recipe-update/recipe-update.component';
 const routes: Routes = [
   
   {path : "" ,component:AppComponent},
   {path : "recipes" ,component:RecipeListComponent},
-  {path : "recipeById" ,component:RecipeListComponent},
-  {path : "addRecipe" ,component:FormComponent}
+  {path : "recipe/:id" ,component:RecipeDetailComponent},
+  {path : "recipes/new" ,component:RecipeCreateComponent},
+  {path : "recipe/edit/:id" ,component:RecipeUpdateComponent}
 
 ];
 
 
 @NgModule({
-  declarations: [RecipeListComponent],
-  imports: [CommonModule , 
-    MatExpansionModule, 
-    MatFormFieldModule,
-    RouterModule.forRoot(routes),
-    MatCardModule],
+  declarations: [],
+  imports: [
+   
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

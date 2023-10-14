@@ -1,0 +1,13 @@
+<a id="list" routerLinkActive="active" [routerLink]="['/recipe', recipe._id]" class="list-group-item clearfix margin" style="cursor: pointer">
+    <div class="media">
+      <div class="media-left media-middle">
+        <img [src]="" alt="" class="media-object" >
+      </div><!--'assets/Tomato-Basil-Pasta-003.jpg'-->
+      <div class="media-body   ">
+        <h4 class="media-heading ">{{recipe.name}}</h4>
+        <p class="textBody hidden-xs" >{{recipe.description}}</p>
+      </div>
+    </div>
+  </a>
+
+  

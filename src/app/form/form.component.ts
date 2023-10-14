@@ -62,6 +62,7 @@ private mapFormGroupToRecipe(formGroup: FormGroup): Recipe {
 
   // Enfin, créez le Recipe en vous assurant que chaque valeur est définie
   const recipe: Recipe = {
+    _id:'',
     name: name.value || '', // Utilisez une valeur par défaut si la valeur est null ou undefined
     description: description.value || '',
     ingredients: ingredients.value || '',

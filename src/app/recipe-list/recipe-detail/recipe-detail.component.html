@@ -1,0 +1,32 @@
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <img [src]="" alt="" class="img-responsive shadow" style="max-width: 100%">
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-xs-12" *ngIf="recipe" >
+      <h1>{{recipe.name}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="btn-group" *ngIf="recipe">
+        <button  [routerLink]="['/recipe/edit', recipe._id]" class="btn btn-primary">Edit</button>
+            <button  type="button" class="btn btn-primary"  (click)="deleteRep(recipe._id)">Delete
+            </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12"  *ngIf="recipe">
+      <h2>{{recipe.description}}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group"  *ngIf="recipe">
+        <li class="list-group-item shadow" *ngFor="let item of recipe.ingredients">{{item}}</li>
+      </ul>
+    </div>
+  </div>

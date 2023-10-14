@@ -11,7 +11,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { RecipeItemComponent } from './recipe-list/recipes/recipe-item/recipe-item.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipeService } from './services/recipe.service';
+import { MatCardModule } from '@angular/material/card';
+import { RecipesComponent } from './recipe-list/recipes/recipes.component';
+import { RecipeDetailComponent } from './recipe-list/recipe-detail/recipe-detail.component';
+import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
+import { RecipeUpdateComponent } from './recipe-update/recipe-update.component';
 
 
 @NgModule({
@@ -19,6 +26,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     HeaderComponent,
     FormComponent,
+    RecipeItemComponent,
+    RecipeListComponent,
+    RecipesComponent,
+    RecipeDetailComponent,
+    RecipeCreateComponent,
+    RecipeUpdateComponent
     
 
    
@@ -28,14 +41,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    AppRoutingModule,
+    MatCardModule,
     HttpClientModule,
     MatInputModule,
     MatExpansionModule,
     MatFormFieldModule,
+    AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

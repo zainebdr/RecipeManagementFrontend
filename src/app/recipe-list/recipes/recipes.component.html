@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-12 col-lg-12">
+      <!-- <button [disabled]="!this.auth.isAuthenticated()" [routerLink]="['new']" type="button" class="btn btn-success">New Recipe</button>--> 
+      <button  [routerLink]="['/recipes/new']" class="btn btn-primary">Add Recipe</button>
+       
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12 ">
+      <app-recipe-item *ngFor="let recipe of recipes " [recipe]="recipe"></app-recipe-item>
+    </div>
+</div>
