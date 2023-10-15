@@ -1,89 +1,57 @@
 <div class="row">
-    <div class="col-xs-4 ">
-     
-   
-    </div>
-    <div class="col-xs-12">
-      <form #recipesForm="ngForm" [formGroup]="recipeEditForm" (ngSubmit)="onSubmit()">
-        <div class="col-xs-6 col-md-6 col-lg-6 pull-right btn-position-save">
-          <button [disabled]='!recipeEditForm.valid' type="submit" class="btn btn-primary">Save</button>
-          <button (click)="onCancel()" type="button" class="btn btn-warning">Cancel</button>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="name">Recipe Name</label>
-              <input formControlName="name" type="text" class="form-control" id="name" placeholder="Recipe Name" ngModel>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-              <div class="form-group">
-                <label for="name">Description</label>
-                <input formControlName="description" type="text" class="form-control" id="description" placeholder="Recipe Desciption">
-              </div>
-            </div>
-          </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="imagePath">Image URL</label>
-              <input formControlName="imagePath" type="text" class="form-control" id="imagePath" placeholder="https://www.imagePath">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <img class="img-responsive" src="" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="instructions">instructions</label>
-              <textarea formControlName="instructions" class="form-control" rows="6" type="text" id="instructions" placeholder="Recipe instructions "></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-              <div class="form-group">
-                <label for="Ingredients">Ingredients</label>
-                <textarea formControlName="ingredients" class="form-control" rows="6" type="text" id="ingredients" placeholder="Recipe Ingredients "></textarea>
-              </div>
-            </div>
-          </div>
-        <br>
-        <div class="row">
-          <div class="col-xs-4">
-            <h3>
-              Ingredients
-            </h3>
-          </div>
-          <!--<div formArrayName="ingredients">
-            <div *ngFor="let ingredient of ingredients.controls; let i = index">
-              <input [formControlName]="i" placeholder="Ingredient {{ i + 1 }}" />
-              <button type="button" (click)="removeIngredient(i)">Remove</button>
-            </div>
-          </div>
-          <button type="button" (click)="addIngredient()">Add Ingredient</button>
-          
+  <div class="col-xs-12 col-sm-8">
+    <form #recipesForm="ngForm" [formGroup]="recipeEditForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Recipe Name <span>*</span></label>
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Recipe Name">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label for="description">Recipe Description <span>*</span></label>
+        <mat-form-field>
+          <input matInput formControlName="description" placeholder="Recipe Description">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label for="imagePath">Image URL</label>
+        <mat-form-field>
+          <input matInput formControlName="imagePath" placeholder="https://www.imagePath">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label for="instructions">Instructions <span>*</span></label>
+        <mat-form-field>
+          <textarea matInput formControlName="instructions" rows="6" id="instructions" placeholder="Recipe instructions"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="form-group" formArrayName="ingredients">
+        <label>Ingredients <span>*</span></label>
+      
           <div class="col-xs-3 pull-right margin-top btn-position-ing">
-            <button type="button" class="btn btn-success" >Add Ingredient</button>
+            <button type="button" class="btn btn-success" (click)="addIngredient()">Add Ingredient</button>
           </div>
-
-              <div class="col-xs-2 margin">
-                <button type="button" class="btn btn-danger" >Delete</button>
-              </div>
-            </div>
+          <div *ngIf="recipeEditForm">
+            <div *ngIf="recipeEditForm.get('ingredients') as ingredientsControl">
+              <div *ngFor="let ingredientControl of $any(ingredientsControl).controls; let i = index">
+                <mat-form-field>
+                  <input matInput [formControlName]="i" placeholder="Ingredient {{ i + 1 }}">
+                </mat-form-field>
+                <!-- ... autres éléments du formulaire -->
           
-    
-        <br>
-        <div class="row">-->
+          
+              <button type="button" class="btn btn-danger" (click)="removeIngredient(i)">Delete</button>
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
+      
+          </div>
+  
+ 
+      <div class="btn-position-save">
+        <button [disabled]='!recipeEditForm.valid' type="submit" class="btn btn-primary btn-margin">Save</button>
+        <button (click)="onCancel()" type="button" class="btn btn-warning btn-margin">Cancel</button>
+      </div>
+    </form>
   </div>
+</div>

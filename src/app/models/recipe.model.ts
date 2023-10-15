@@ -5,5 +5,5 @@ export interface Recipe {
   description: string;
   ingredients: string[];
   instructions: string;
-  imagePath?: string; // Define the imagePath property
+  imagePath?: "assets/Tomato-Basil-Pasta-003.jpg" // Define the imagePath property
 }

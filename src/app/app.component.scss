@@ -1,5 +1,22 @@
-@media only screen and (max-width: 40px) {
-    .item {
-      margin-top: 80px;
-    }
+
+
+/* Styles de base */
+.item {
+  width: 200px;
+  height: 100px;
+  background-color: lightblue;
+}
+
+/* Styles spécifiques aux écrans larges */
+@media screen and (min-width: 750px) {
+  .item {
+    background-color: lightgreen;
   }
+}
+
+/* Styles spécifiques aux écrans très étroits */
+@media screen and (max-width: 400px) {
+  .item {
+    background-color: lightcoral;
+  }
+}

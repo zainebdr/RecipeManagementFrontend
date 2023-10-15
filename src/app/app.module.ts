@@ -19,8 +19,8 @@ import { RecipesComponent } from './recipe-list/recipes/recipes.component';
 import { RecipeDetailComponent } from './recipe-list/recipe-detail/recipe-detail.component';
 import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
 import { RecipeUpdateComponent } from './recipe-update/recipe-update.component';
-
-
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +32,7 @@ import { RecipeUpdateComponent } from './recipe-update/recipe-update.component';
     RecipeDetailComponent,
     RecipeCreateComponent,
     RecipeUpdateComponent
+  
     
 
    
@@ -44,6 +45,8 @@ import { RecipeUpdateComponent } from './recipe-update/recipe-update.component';
     MatCardModule,
     HttpClientModule,
     MatInputModule,
+    MatToolbarModule,
+    MatIconModule,
     MatExpansionModule,
     MatFormFieldModule,
     AppRoutingModule,

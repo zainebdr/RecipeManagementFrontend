@@ -1,32 +1,33 @@
-
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <img [src]="" alt="" class="img-responsive shadow" style="max-width: 100%">
-    </div>
-  </div>
-  <div class="row" >
-    <div class="col-xs-12" *ngIf="recipe" >
-      <h1>{{recipe.name}}</h1>
-    </div>
-  </div>
   <div class="row">
-    <div class="col-xs-12">
-      <div class="btn-group" *ngIf="recipe">
-        <button  [routerLink]="['/recipe/edit', recipe._id]" class="btn btn-primary">Edit</button>
-            <button  type="button" class="btn btn-primary"  (click)="deleteRep(recipe._id)">Delete
-            </button>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <img  src="assets/Tomato-Basil-Pasta-003.jpg" alt="" class="img-responsive shadow media-object" style="max-width: 100%">
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12"  *ngIf="recipe">
-      <h2>{{recipe.description}}</h2>
+    <div class="row">
+      <div class="d-flex justify-content-between">
+     
+      <div class="col-xs-12" *ngIf="recipe">
+        <h1>
+          {{recipe.name}}
+          <button type="button" [routerLink]="['/recipe/edit', recipe._id]" class="btn btn-outline-warning btn-margin">Edit</button>
+          <button type="button" class="btn btn-outline-warning btn-margin" (click)="deleteRep(recipe._id)">Delete</button>
+        </h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <ul class="list-group"  *ngIf="recipe">
-        <li class="list-group-item shadow" *ngFor="let item of recipe.ingredients">{{item}}</li>
-      </ul>
     </div>
-  </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xs-12" *ngIf="recipe">
+        <h2>{{recipe.description}}</h2>
+      </div>
+    </div>
+
+    <div class="row">
+       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+   <ul class="list-group" *ngIf="recipe">
+          <li class="list-group-item shadow" *ngFor="let item of recipe.ingredients">{{item}}</li>
+        </ul>
+      </div>
+    </div>
+ 
+

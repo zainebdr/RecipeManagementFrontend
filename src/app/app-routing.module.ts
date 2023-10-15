@@ -13,9 +13,11 @@ import { RecipeUpdateComponent } from './recipe-update/recipe-update.component';
 const routes: Routes = [
   
   {path : "" ,component:AppComponent},
-  {path : "recipes" ,component:RecipeListComponent},
-  {path : "recipe/:id" ,component:RecipeDetailComponent},
-  {path : "recipes/new" ,component:RecipeCreateComponent},
+  {path : "recipes" ,component:RecipeListComponent,
+  children: [
+    {path : ":id" ,component:RecipeDetailComponent},
+  ]},
+  {path : "recipe/new" ,component:RecipeCreateComponent},
   {path : "recipe/edit/:id" ,component:RecipeUpdateComponent}
 
 ];

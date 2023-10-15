@@ -22,7 +22,7 @@ export class RecipeDetailComponent implements OnInit {
       //listen and get recipe from route params id
       this.route.paramMap.subscribe(params => {
        
-              console.log('Params id :', params);
+      console.log('Params id :', params);
      
        const id = params.get('id');
        if (id !== null){
@@ -38,14 +38,20 @@ export class RecipeDetailComponent implements OnInit {
    
     
   }
-    
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
+  }
   deleteRep(recipeId: string) {
     if (recipeId !== null){
-      console.log('avant',recipeId),
+     
       this.recipeService.deleteRecipe(recipeId).subscribe((res =>
         console.log(res))
         );
-        this.router.navigate(['/recipes'])
+        this.reloadCurrentRoute();
+
 
       
   }

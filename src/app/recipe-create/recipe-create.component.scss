@@ -1,3 +1,44 @@
+
+.custom-row {
+  width: 80%; /* Par exemple, cela prendra 70% de la largeur de la page */
+  margin: 0 auto; /* Pour centrer l'élément horizontalement si nécessaire */
+}
+.row {
+  margin: 0; // Supprime la marge par défaut de Bootstrap
+  label {
+    width: 150px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 10px; // Espace entre les champs de formulaire
+     // Pour aligner les labels et les champs dans la même ligne
+    align-items: center; // Pour centrer verticalement le label et le champ
+ 
+    textarea {
+      resize: vertical; // Permet aux zones de texte de redimensionner verticalement
+      max-height: 150px; // Hauteur maximale de la zone de texte réduite
+      width: 100%; // Pour que la zone de texte occupe toute la largeur disponible
+    }
+  }
+}
+
+
+.btn-position-save {
+  margin-top: 5px; // Espace entre le formulaire et les boutons
+  text-align: left; // Aligner les boutons à gauche
+  .btn {
+    margin-right: 20px; // Espace entre les boutons
+  }
+}
+
+/* Style pour les champs obligatoires */
+label > span {
+  color: red; /* Couleur rouge pour les éléments obligatoires */
+  margin-right: 5px; /* Espace entre le label et l'astérisque */
+}
+
 .margin {
   margin-bottom: 8px;
 }

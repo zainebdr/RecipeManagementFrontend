@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import { FormArray,ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe.model';
 
@@ -9,83 +9,89 @@ import { Recipe } from '../models/recipe.model';
   templateUrl: './recipe-create.component.html',
   styleUrls: ['./recipe-create.component.scss']
 })
+export class RecipeCreateComponent implements OnInit {
+  recipeEditForm: FormGroup;
+   // Déclarez et initialisez le tableau d'ingrédients
+   ingredients: FormArray;
 
-
-export class RecipeCreateComponent implements OnInit  {
-
-  constructor(public route: ActivatedRoute, public recipeService: RecipeService, public router: Router) { }
-  ngOnInit(): void {
-  
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private recipeService: RecipeService,
+    private router: Router
+  ) {
+    this.ingredients = this.fb.array([''], Validators.required); // Initialisez avec un ingrédient vide
+    this.recipeEditForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      instructions: ['', Validators.required],
+      imagePath: ['', Validators.required],
+      ingredients: this.ingredients // Associez le tableau d'ingrédients au formulaire
+    });
   }
 
+  ngOnInit(): void {
+   
+  }
 
-    // Form set up Reactive
-      recipeEditForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      ingredients: new FormControl('', Validators.required),
-      instructions: new FormControl('', Validators.required) ,
-      imagePath: new FormControl('', Validators.required)
-      
-    });
-    onCancel() {
-      this.router.navigate(['/recipes']);
-    }
-  
-  // adds altered or new recipe to recipe array
+    
+
+  onCancel() {
+    this.router.navigate(['/recipes']);
+  }
+
+  addIngredient() : FormArray {
+    const ingredientsControl = this.recipeEditForm.get('ingredients') as FormArray;
+    ingredientsControl.push(this.fb.control(''));
+    return ingredientsControl;
+    
+  //  const ingredientsControl = this.recipeEditForm.get('ingredients') as FormArray;
+    console.log('ingredieents ', ingredientsControl.value);
+   // ingredientsControl.push(this.fb.control(''));
+  }
+
+  removeIngredient(index: number) {
+    const ingredientsControl = this.recipeEditForm.get('ingredients') as FormArray;
+    ingredientsControl.removeAt(index);
+  }
+
   onSubmit() {
-
     if (this.recipeEditForm.valid) {
       const recipeData: Recipe = this.mapFormGroupToRecipe(this.recipeEditForm);
+          // Récupérez les ingrédients du formulaire
+    const ingredients = this.recipeEditForm.get('ingredients')?.value;
 
-    // Effectuez ici votre requête ou toute autre logique associée à la soumission du formulaire.
-    // Vous pouvez utiliser this.recipeEditForm.value pour accéder aux valeurs des contrôles.
-    console.log( this.recipeEditForm.value)
- 
-  this.recipeService.addRecipe(recipeData).subscribe(
-    (res)=> 
-    {
-    
-      console.log('response data: ', this.recipeEditForm.value);
-    },
-    (err) => console.error(err)
-  )
-  this.router.navigate(['/recipes'])
+    // Ajoutez les ingrédients à votre objet recipeData
+    recipeData.ingredients = ingredients;
 
+      this.recipeService.addRecipe(recipeData).subscribe(
+        (res) => {
+          console.log('Recipe added:', recipeData);
+        },
+        (err) => console.error(err)
+      );
 
-  };
+      this.router.navigate(['/recipes']);
+    }
+  }
 
-
-}
-
-  
   private mapFormGroupToRecipe(formGroup: FormGroup): Recipe {
-    // Vérifiez d'abord que le FormGroup est défini
-    if (!formGroup) {
-      throw new Error('FormGroup is not defined');
-    }
-  
-    // Ensuite, vérifiez que chaque contrôle de formulaire contient une valeur valide
-    const name = formGroup.get('name');
-    const description = formGroup.get('description');
-    const ingredients = formGroup.get('ingredients');
-    const instructions = formGroup.get('instructions');
-  
-    if (!name || !description || !ingredients || !instructions) {
-      throw new Error('One or more form controls are not defined');
-    }
-  
-    // Enfin, créez le Recipe en vous assurant que chaque valeur est définie
+    const name = formGroup.get('name')?.value || '';
+    const description = formGroup.get('description')?.value || '';
+    const ingredients = formGroup.get('ingredients')?.value || [];
+    const instructions = formGroup.get('instructions')?.value || '';
+    const imagePath = formGroup.get('imagePath')?.value || '';
+
     const recipe: Recipe = {
-      _id:'',
-      name: name.value || '', // Utilisez une valeur par défaut si la valeur est null ou undefined
-      description: description.value || '',
-      ingredients: ingredients.value || '',
-      instructions: instructions.value || '',
-      // Ajoutez d'autres propriétés ici
+      _id: '',
+      name,
+      description,
+      ingredients,
+      instructions,
+      imagePath
+      // Add other properties here
     };
-  return recipe;
+
+    return recipe;
   }
 }
-
-
