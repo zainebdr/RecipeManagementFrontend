@@ -29,6 +29,7 @@ export class RecipeDetailComponent implements OnInit {
         this.recipeService.getRecipe(id).subscribe(recipe => {
         console.log('recippe',recipe);
         this.recipe = recipe;
+        
         });
       }
       else

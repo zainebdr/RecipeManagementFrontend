@@ -1,0 +1,76 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../models/users.models';
+import { UserService } from '../services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss']
+})
+export class AuthComponent {
+  isLogin=true   ; // Par défaut, le formulaire est utilisé pour la connexion
+  registerForm: FormGroup;
+  user : User | undefined;
+ 
+
+  constructor(private fb: FormBuilder,private userService: UserService ,private route: ActivatedRoute, private router: Router) {
+   
+    /*this.route.params.subscribe(params => {
+      this.isLogin = params['mode'] === 'signup';
+      console.log('parraaams ',params['mode']);
+    });*/
+    this.registerForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+  
+    })
+    ;}
+  goToSignupPage() {
+    this.isLogin= false;
+  //  this.router.navigate(['/signup']);
+    console.log('jesuis singup avec is login',this.isLogin);
+    // Utilisez le chemin de la route que vous avez défini
+  }
+  onSubmit() {
+    if (this.registerForm.valid) {
+      const user : User = {
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password,
+        _id: ''
+      };
+      console.log('user : ',user);
+
+    //Pour le signup
+     if (!this.isLogin) {
+     console.log("hi signup")
+      this.userService.addUser(user).subscribe(
+        (addedUser) => {
+        console.log(addedUser);
+        console.log('Utilisateur ajouté avec ID :', addedUser._id);
+        },
+       (error) => {
+        // Gérer les erreurs ici, si la requête échoue
+        console.error(error);
+      }
+    );
+
+    }
+
+    //pour le login
+    else{
+      console.log("hi login");
+      this.router.navigate(['/recipes'], { skipLocationChange: true });
+
+   
+     
+
+    };}
+    
+  };
+  toggleForm() {
+    this.isLogin = !this.isLogin; // Permet de basculer entre les formulaires de connexion et d'inscription
+    this.registerForm.reset(); // Réinitialise le formulaire
+  };
+}

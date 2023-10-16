@@ -10,7 +10,7 @@ const baseUrl = 'http://localhost:3000/api/recipes';
   providedIn: 'root' , //service au niveau de la racine,une seule instance de ce service sera partagée par tous les composants qui injectent ce service.
 })
 export class RecipeService {
-  recipesChanged = new Subject<Recipe[]>()
+  //recipesChanged = new Subject<Recipe[]>()
   
   constructor(private http: HttpClient) { }
 

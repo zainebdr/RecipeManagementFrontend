@@ -1,0 +1,19 @@
+
+.container {
+    display: flex;
+  }
+  
+  .image-container {
+    flex: 1; /* Prendra la moitié de la largeur de la page */
+    text-align: right; /* Aligne l'image à droite */
+  }
+  
+  .reduced-image {
+    max-width: 100%; /* Réduit la taille de l'image pour qu'elle reste dans la largeur de son conteneur */
+  }
+  
+  .form-container {
+    flex: 1; /* Prendra l'autre moitié de la largeur de la page */
+    padding: 20px; /* Ajoute un espacement au formulaire (ajustez selon vos besoins) */
+  }
+  
