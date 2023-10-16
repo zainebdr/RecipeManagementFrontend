@@ -17,13 +17,16 @@ export class UserService {
   return this.http.get<User[]>(`${baseUrl}/login`); // Remplacez l'URL par celle de votre API.
   }
 
-  getUser(email : User["email"]) {
-    return this.http.get<User>(`${baseUrl}/login/${email}`,); // Remplacez l'URL par celle de votre API.
-    }
+
+
+  getEmail(email : User["email"]) {
+    
+      return this.http.get<User>(`${baseUrl}/check-email/${email}`,); // Remplacez l'URL par celle de votre API.
+      }
 
   addUser(user : User) : Observable<User> 
   {
-    return this.http.post<User>(`${baseUrl}/signup`,user);
+    return this.http.post<User>(`${baseUrl}/signup`,user, { withCredentials: true });
    
   }
 

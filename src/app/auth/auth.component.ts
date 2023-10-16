@@ -48,7 +48,7 @@ export class AuthComponent {
       this.userService.addUser(user).subscribe(
         (addedUser) => {
         console.log(addedUser);
-        console.log('Utilisateur ajouté avec ID :', addedUser._id);
+        console.log('user added with is  :', addedUser._id);
         },
        (error) => {
         // Gérer les erreurs ici, si la requête échoue
@@ -60,9 +60,17 @@ export class AuthComponent {
 
     //pour le login
     else{
-      console.log("hi login");
-      this.router.navigate(['/recipes'], { skipLocationChange: true });
+      
+      this.userService.getEmail(user.email).subscribe(exists => {
+        if (exists) {
+          console.log('Email already exists', exists,user.email);
+          this.router.navigate(['/recipes'], { skipLocationChange: true });
 
+        } else {
+          console.log('Email does not exist');
+        }
+      });
+     
    
      
 
