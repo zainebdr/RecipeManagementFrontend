@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8">
-    <form #recipesForm="ngForm" [formGroup]="recipeEditForm" (ngSubmit)="onSubmit()">
+    <form #recipesForm="ngForm" [formGroup]="recipeEditForm" (ngSubmit)="onSubmit()" class="form-outline mb-4">
       <div class="form-group">
         <label for="name">Recipe Name <span>*</span></label>
         <mat-form-field>
@@ -8,7 +8,7 @@
         </mat-form-field>
       </div>
       <div class="form-group">
-        <label for="description">Recipe Description <span>*</span></label>
+        <label class="form-label" for="description">Recipe Description <span>*</span></label>
         <mat-form-field>
           <input matInput formControlName="description" placeholder="Recipe Description">
         </mat-form-field>
@@ -29,25 +29,23 @@
         <label>Ingredients <span>*</span></label>
       
           <div class="col-xs-3 pull-right margin-top btn-position-ing">
-            <button type="button" class="btn btn-success" (click)="addIngredient()">Add Ingredient</button>
+            <button type="button" class="btn btn-outline-secondary" (click)="addIngredient()">Add Ingredient</button>
           </div>
           <div *ngIf="recipeEditForm">
             <div *ngIf="recipeEditForm.get('ingredients') as ingredientsControl">
               <div *ngFor="let ingredientControl of $any(ingredientsControl).controls; let i = index">
+                <div class="form-row">
+                  <div class="col-xs-8">
                 <mat-form-field>
                   <input matInput [formControlName]="i" placeholder="Ingredient {{ i + 1 }}">
                 </mat-form-field>
-                <!-- ... autres éléments du formulaire -->
-          
-          
-              <button type="button" class="btn btn-danger" (click)="removeIngredient(i)">Delete</button>
+              </div>
+              </div>
+              <button type="button" class="btn btn-outline-danger" (click)="removeIngredient(i)">Delete</button>
             </div>
           </div>
-        </div>
-      
+        </div>  
           </div>
-  
- 
       <div class="btn-position-save">
         <button [disabled]='!recipeEditForm.valid' type="submit" class="btn btn-primary btn-margin">Save</button>
         <button (click)="onCancel()" type="button" class="btn btn-warning btn-margin">Cancel</button>

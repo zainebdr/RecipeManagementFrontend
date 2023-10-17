@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -23,6 +23,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { RecipeHomeComponent } from './recipe-home/recipe-home.component';
 import { UserService } from './services/user.service';
 import { AuthComponent } from './auth/auth.component';
+import { JwtInterceptor } from './services/jwt.interceptor';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { AuthComponent } from './auth/auth.component';
     RecipeCreateComponent,
     RecipeUpdateComponent,
     RecipeHomeComponent,
-    AuthComponent
+    AuthComponent,
+    
   
     
 
@@ -56,7 +59,7 @@ import { AuthComponent } from './auth/auth.component';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [RecipeService,UserService],
+  providers: [RecipeService,UserService,{provide: HTTP_INTERCEPTORS ,useClass:  JwtInterceptor,multi:true},CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

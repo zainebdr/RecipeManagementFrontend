@@ -20,8 +20,8 @@ export class UserService {
 
 
   getEmail(email : User["email"]) {
-    
-      return this.http.get<User>(`${baseUrl}/check-email/${email}`,); // Remplacez l'URL par celle de votre API.
+     
+      return this.http.get<any>(`${baseUrl}/check-email/${email}`, { withCredentials: true }); // Remplacez l'URL par celle de votre API.
       }
 
   addUser(user : User) : Observable<User> 

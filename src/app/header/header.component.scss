@@ -1,8 +1,23 @@
 /* google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
+h1
+{
+  font-size: 27px;
 
-h1, h2, h3, h4, ul, li, a, p, input, label, button, div, footer{
+  text-shadow: -3px -1px #000,   #000;
+  font-family:"Segoe print", Arial, Helvetica, sans-serif;
+  color: #000; 
+  
+
+}
+body{
+  margin: 20px 40px;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  background: #fafafa;
+}
+h2, h3, h4, ul, li, a, p, input, label, button, div, footer{
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;

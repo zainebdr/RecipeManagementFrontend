@@ -6,14 +6,11 @@
     </div>
     <div class="col-xs-12">
       <form #recipesForm="ngForm" [formGroup]="recipeEditForm" (ngSubmit)="onSubmit()">
-        <div class="col-xs-6 col-md-6 col-lg-6 pull-right btn-position-save">
-          <button [disabled]='!recipeEditForm.valid' type="submit" class="btn btn-primary">Save</button>
-          <button (click)="onCancel()" type="button" class="btn btn-warning">Cancel</button>
-        </div>
+       
         <div class="row">
           <div class="col-xs-12">
             <div class="form-group">
-              <label for="name">Recipe Name</label>
+              <label for="name">Recipe Name</label><span> * </span>
               <input formControlName="name" type="text" class="form-control" id="name" placeholder="Recipe Name" ngModel>
             </div>
           </div>
@@ -21,7 +18,7 @@
         <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="name">Description</label>
+                <label for="name">Description</label><span> * </span>
                 <input formControlName="description" type="text" class="form-control" id="description" placeholder="Recipe Desciption">
               </div>
             </div>
@@ -44,7 +41,7 @@
         <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="Ingredients">Ingredients</label>
+                <label for="Ingredients">Ingredients</label> <span> * </span>
                 <textarea formControlName="ingredients" class="form-control" rows="6" type="text" id="ingredients" placeholder="Recipe Ingredients "></textarea>
               </div>
             </div>
@@ -52,36 +49,14 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="form-group">
-              <label for="instructions">instructions</label>
+              <label for="instructions">instructions</label> <span> * </span>
               <textarea formControlName="instructions" class="form-control" rows="6" type="text" id="instructions" placeholder="Recipe instructions "></textarea>
             </div>
           </div>
         </div>
+        <div class="col-xs-6 col-md-6 col-lg-6 pull-right btn-position-save">
+          <button [disabled]='!recipeEditForm.valid' type="submit" class="btn btn-primary">Save</button>
+          <button (click)="onCancel()" type="button" class="btn btn-warning">Cancel</button>
+        </div>
         
-        <br>
-   
-        
-          <!--<div formArrayName="ingredients">
-            <div *ngFor="let ingredient of ingredients.controls; let i = index">
-              <input [formControlName]="i" placeholder="Ingredient {{ i + 1 }}" />
-              <button type="button" (click)="removeIngredient(i)">Remove</button>
-            </div>
-          </div>
-          <button type="button" (click)="addIngredient()">Add Ingredient</button>
-          
-          <div class="col-xs-3 pull-right margin-top btn-position-ing">
-            <button type="button" class="btn btn-success" >Add Ingredient</button>
-          </div>
-
-              <div class="col-xs-2 margin">
-                <button type="button" class="btn btn-danger" >Delete</button>
-              </div>
-            </div>
-          
-    
-        <br>
-        <div class="row">-->
-     
-      </form>
-    </div>
-  </div>
+       

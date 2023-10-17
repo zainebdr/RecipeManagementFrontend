@@ -95,7 +95,7 @@ export class RecipeUpdateComponent implements OnInit  {
           console.log('Recipe',response)
         }
       );
-     this.router.navigate(['/recipe/edit', this.id]);
+     this.router.navigate(['/recipes', this.id]);
     } else
     {alert ("Please fill out all fields")}
   }
